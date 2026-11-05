@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DevLinks.Api/DevLinks.Api.csproj" />
+    <Project Path="src/DevLinks.Core/DevLinks.Core.csproj" />
+    <Project Path="src/DevLinks.Infrastructure/DevLinks.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DevLinks.UnitTests/DevLinks.UnitTests.csproj" />
+    <Project Path="tests/DevLinks.IntegrationTests/DevLinks.IntegrationTests.csproj" />
+  </Folder>
+</Solution>
