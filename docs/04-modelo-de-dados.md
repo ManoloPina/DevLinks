@@ -53,7 +53,7 @@ Representa o usuário registrado no sistema, herdando as funcionalidades de segu
 ```csharp
 using Microsoft.AspNetCore.Identity;
 
-namespace UrlShortener.Core.Entities;
+namespace DevLinks.Core.Entities;
 
 public sealed class AppUser : IdentityUser<Guid>
 {
@@ -97,7 +97,7 @@ Contém os detalhes do perfil do desenvolvedor consumidos na aba _Profile Detail
 | `UpdatedAtUtc` | `DateTimeOffset` | `TIMESTAMPTZ`   | Não   | Timestamp da última atualização em UTC.          |
 
 ```csharp
-namespace UrlShortener.Core.Entities;
+namespace DevLinks.Core.Entities;
 
 public sealed class UserProfile
 {
@@ -162,7 +162,7 @@ Armazena cada link individual adicionado na aba _Customize your links_.
 | `UpdatedAtUtc` | `DateTimeOffset` | `TIMESTAMPTZ`   | Não   | Data da última alteração.                               |
 
 ```csharp
-namespace UrlShortener.Core.Entities;
+namespace DevLinks.Core.Entities;
 
 public sealed class UserLink
 {
@@ -211,9 +211,9 @@ public sealed class UserLink
 ```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UrlShortener.Core.Entities;
+using DevLinks.Core.Entities;
 
-namespace UrlShortener.Infrastructure.Data.Configurations;
+namespace DevLinks.Infrastructure.Data.Configurations;
 
 public sealed class UserProfileConfiguration : IEntityTypeConfiguration<UserProfile>
 {
@@ -260,9 +260,9 @@ public sealed class UserProfileConfiguration : IEntityTypeConfiguration<UserProf
 ```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UrlShortener.Core.Entities;
+using DevLinks.Core.Entities;
 
-namespace UrlShortener.Infrastructure.Data.Configurations;
+namespace DevLinks.Infrastructure.Data.Configurations;
 
 public sealed class UserLinkConfiguration : IEntityTypeConfiguration<UserLink>
 {
@@ -352,17 +352,17 @@ O versionamento do banco de dados é controlado pelas migrações do EF Core:
 ```bash
 # Adicionar a migração inicial das tabelas
 dotnet ef migrations add InitialCreate \
-  --project src/UrlShortener.Infrastructure \
-  --startup-project src/UrlShortener.Api
+  --project src/DevLinks.Infrastructure \
+  --startup-project src/DevLinks.Api
 
 # Aplicar migrações ao banco local ou de teste
 dotnet ef database update \
-  --project src/UrlShortener.Infrastructure \
-  --startup-project src/UrlShortener.Api
+  --project src/DevLinks.Infrastructure \
+  --startup-project src/DevLinks.Api
 
 # Gerar script SQL idempotente para produção
 dotnet ef migrations script --idempotent \
-  --project src/UrlShortener.Infrastructure \
-  --startup-project src/UrlShortener.Api \
+  --project src/DevLinks.Infrastructure \
+  --startup-project src/DevLinks.Api \
   --output migrations.sql
 ```

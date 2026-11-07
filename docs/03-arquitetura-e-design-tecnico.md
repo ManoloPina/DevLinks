@@ -45,13 +45,13 @@ graph TD
 A solution adota a convenção padrão do .NET com separação clara de responsabilidades:
 
 ```
-devlinks / UrlShortener/
+devlinks / DevLinks/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml                         # Pipeline de CI (Build, Format, Tests)
 ├── docs/                                  # Especificações completas de engenharia
 ├── src/
-│   ├── UrlShortener.Api/                  # Ponto de entrada da API (Minimal APIs, DTOs, Handlers)
+│   ├── DevLinks.Api/                      # Ponto de entrada da API (Minimal APIs, DTOs, Handlers)
 │   │   ├── Common/
 │   │   │   ├── Errors/                    # GlobalExceptionHandler (RFC 7807)
 │   │   │   └── Extensions/                # DependencyInjectionExtensions
@@ -66,7 +66,7 @@ devlinks / UrlShortener/
 │   │   ├── Dockerfile
 │   │   └── Program.cs
 │   │
-│   ├── UrlShortener.Core/                 # Entidades de Domínio, Enums, Regras de Negócio e Interfaces
+│   ├── DevLinks.Core/                     # Entidades de Domínio, Enums, Regras de Negócio e Interfaces
 │   │   ├── Entities/
 │   │   │   ├── AppUser.cs                 # Identidade e autenticação
 │   │   │   ├── UserProfile.cs             # Nome, sobrenome, email público, avatar
@@ -83,7 +83,7 @@ devlinks / UrlShortener/
 │   │   └── Services/
 │   │       └── PlatformValidator.cs
 │   │
-│   └── UrlShortener.Infrastructure/       # Persistência EF Core, Identity, Storage e JWT
+│   └── DevLinks.Infrastructure/           # Persistência EF Core, Identity, Storage e JWT
 │       ├── Data/
 │       │   ├── AppDbContext.cs
 │       │   └── Configurations/
@@ -96,8 +96,8 @@ devlinks / UrlShortener/
 │       └── Migrations/
 │
 ├── tests/
-│   ├── UrlShortener.UnitTests/            # Testes unitários puros (Validação, Reordenação, Perfil)
-│   └── UrlShortener.IntegrationTests/     # Testes de integração (WebApplicationFactory + Testcontainers)
+│   ├── DevLinks.UnitTests/                # Testes unitários puros (Validação, Reordenação, Perfil)
+│   └── DevLinks.IntegrationTests/         # Testes de integração (WebApplicationFactory + Testcontainers)
 │
 ├── docker-compose.yml                     # Orquestração local (API + PostgreSQL)
 ├── .dockerignore
@@ -116,7 +116,7 @@ Para evitar código duplicado e acoplamento, implementa-se o padrão **Registry 
 ### 3.1 Definição da Plataforma (`PlatformDefinition`)
 
 ```csharp
-namespace UrlShortener.Core.Platforms;
+namespace DevLinks.Core.Platforms;
 
 public sealed record PlatformDefinition(
     string Id,
@@ -132,7 +132,7 @@ public sealed record PlatformDefinition(
 O `PlatformRegistry` centraliza os metadados das 14 plataformas oficiais do desafio:
 
 ```csharp
-namespace UrlShortener.Core.Platforms;
+namespace DevLinks.Core.Platforms;
 
 public static class PlatformRegistry
 {
@@ -261,7 +261,7 @@ O usuário pode adicionar novos links, alterar URLs existentes, excluir links e 
 O upload de avatares utiliza a interface `IAvatarStorageService`:
 
 ```csharp
-namespace UrlShortener.Core.Interfaces;
+namespace DevLinks.Core.Interfaces;
 
 public interface IAvatarStorageService
 {

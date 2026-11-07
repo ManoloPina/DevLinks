@@ -20,7 +20,7 @@ A garantia de qualidade e conformidade com os requisitos do Frontend Mentor apoi
   /─────────────────\
 ```
 
-### 1.1 Testes Unitários (`UrlShortener.UnitTests`)
+### 1.1 Testes Unitários (`DevLinks.UnitTests`)
 
 Focam nas regras de negócio isoladas, sem dependência de banco de dados ou rede:
 
@@ -39,10 +39,10 @@ Focam nas regras de negócio isoladas, sem dependência de banco de dados ou red
 
 ```csharp
 using FluentAssertions;
-using UrlShortener.Core.Services;
+using DevLinks.Core.Services;
 using Xunit;
 
-namespace UrlShortener.UnitTests;
+namespace DevLinks.UnitTests;
 
 public sealed class PlatformValidatorTests
 {
@@ -80,7 +80,7 @@ public sealed class PlatformValidatorTests
 
 ---
 
-### 1.2 Testes de Integração (`UrlShortener.IntegrationTests`)
+### 1.2 Testes de Integração (`DevLinks.IntegrationTests`)
 
 Executam o fluxo completo da API contra uma instância real e efêmera de **PostgreSQL** provisionada em container temporário via **Testcontainers.PostgreSql**:
 
@@ -91,10 +91,10 @@ using System.Net.Http.Json;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Testcontainers.PostgreSql;
-using UrlShortener.Api.Common.DTOs;
+using DevLinks.Api.Common.DTOs;
 using Xunit;
 
-namespace UrlShortener.IntegrationTests;
+namespace DevLinks.IntegrationTests;
 
 public sealed class LinkSharingFlowTests : IAsyncLifetime
 {
@@ -177,7 +177,7 @@ public sealed class LinkSharingFlowTests : IAsyncLifetime
 
 A API utiliza um `Dockerfile` multi-stage baseado em imagens leves Alpine Linux.
 
-### Arquivo: `src/UrlShortener.Api/Dockerfile`
+### Arquivo: `src/DevLinks.Api/Dockerfile`
 
 ```dockerfile
 # Estágio 1: Build & Restore
@@ -185,15 +185,15 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
 WORKDIR /app
 
 # Copiar arquivos de projeto para otimizar o cache de camadas
-COPY ["src/UrlShortener.Api/UrlShortener.Api.csproj", "src/UrlShortener.Api/"]
-COPY ["src/UrlShortener.Core/UrlShortener.Core.csproj", "src/UrlShortener.Core/"]
-COPY ["src/UrlShortener.Infrastructure/UrlShortener.Infrastructure.csproj", "src/UrlShortener.Infrastructure/"]
-RUN dotnet restore "src/UrlShortener.Api/UrlShortener.Api.csproj"
+COPY ["src/DevLinks.Api/DevLinks.Api.csproj", "src/DevLinks.Api/"]
+COPY ["src/DevLinks.Core/DevLinks.Core.csproj", "src/DevLinks.Core/"]
+COPY ["src/DevLinks.Infrastructure/DevLinks.Infrastructure.csproj", "src/DevLinks.Infrastructure/"]
+RUN dotnet restore "src/DevLinks.Api/DevLinks.Api.csproj"
 
 # Copiar todo o código-fonte restante e publicar
 COPY src/ src/
-WORKDIR "/app/src/UrlShortener.Api"
-RUN dotnet publish "UrlShortener.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+WORKDIR "/app/src/DevLinks.Api"
+RUN dotnet publish "DevLinks.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Estágio 2: Runtime leve
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
@@ -209,7 +209,7 @@ COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "UrlShortener.Api.dll"]
+ENTRYPOINT ["dotnet", "DevLinks.Api.dll"]
 ```
 
 ---
@@ -223,7 +223,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: src/UrlShortener.Api/Dockerfile
+      dockerfile: src/DevLinks.Api/Dockerfile
     container_name: devlinks-api
     ports:
       - "5000:8080"

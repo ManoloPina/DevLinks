@@ -23,8 +23,8 @@ Execute os comandos abaixo a partir da raiz do repositório para estruturar a so
 ### 2.1 Criar Solution, Gitignore e Manifesto de Ferramentas
 
 ```bash
-# 1. Criar solution e gitignore
-dotnet new sln -n UrlShortener
+# 1. Criar solution no formato .slnx e gitignore
+dotnet new sln --format slnx -n DevLinks
 dotnet new gitignore
 
 # 2. Configurar manifesto de ferramentas locais e instalar a CLI do EF Core
@@ -36,73 +36,83 @@ dotnet tool install dotnet-ef
 
 ```bash
 # 1. API Principal (Minimal APIs)
-dotnet new webapi -n UrlShortener.Api -o src/UrlShortener.Api --use-program-main=false
+dotnet new webapi -n DevLinks.Api -o src/DevLinks.Api --use-program-main=false
 
 # 2. Camada de Domínio e Aplicação (Class Library)
-dotnet new classlib -n UrlShortener.Core -o src/UrlShortener.Core
+dotnet new classlib -n DevLinks.Core -o src/DevLinks.Core
 
 # 3. Camada de Infraestrutura e Banco (Class Library)
-dotnet new classlib -n UrlShortener.Infrastructure -o src/UrlShortener.Infrastructure
+dotnet new classlib -n DevLinks.Infrastructure -o src/DevLinks.Infrastructure
 
 # 4. Projetos de Teste (xUnit)
-dotnet new xunit -n UrlShortener.UnitTests -o tests/UrlShortener.UnitTests
-dotnet new xunit -n UrlShortener.IntegrationTests -o tests/UrlShortener.IntegrationTests
+dotnet new xunit -n DevLinks.UnitTests -o tests/DevLinks.UnitTests
+dotnet new xunit -n DevLinks.IntegrationTests -o tests/DevLinks.IntegrationTests
 ```
+
+Após os scaffolds, remover os arquivos `Class1.cs` (Core e Infrastructure) e `UnitTest1.cs` (testes) gerados pelos templates.
 
 ### 2.3 Vincular os Projetos à Solution
 
 ```bash
-dotnet sln add src/UrlShortener.Api
-dotnet sln add src/UrlShortener.Core
-dotnet sln add src/UrlShortener.Infrastructure
-dotnet sln add tests/UrlShortener.UnitTests
-dotnet sln add tests/UrlShortener.IntegrationTests
+dotnet sln add src/DevLinks.Api
+dotnet sln add src/DevLinks.Core
+dotnet sln add src/DevLinks.Infrastructure
+dotnet sln add tests/DevLinks.UnitTests
+dotnet sln add tests/DevLinks.IntegrationTests
 ```
 
 ### 2.4 Configurar as Referências entre Projetos
 
 ```bash
 # Api depende de Core e Infrastructure
-dotnet add src/UrlShortener.Api reference src/UrlShortener.Core
-dotnet add src/UrlShortener.Api reference src/UrlShortener.Infrastructure
+dotnet add src/DevLinks.Api reference src/DevLinks.Core
+dotnet add src/DevLinks.Api reference src/DevLinks.Infrastructure
 
 # Infrastructure depende de Core
-dotnet add src/UrlShortener.Infrastructure reference src/UrlShortener.Core
+dotnet add src/DevLinks.Infrastructure reference src/DevLinks.Core
 
 # Testes Unitários dependem de Core
-dotnet add tests/UrlShortener.UnitTests reference src/UrlShortener.Core
+dotnet add tests/DevLinks.UnitTests reference src/DevLinks.Core
 
 # Testes de Integração dependem da Api e Infrastructure
-dotnet add tests/UrlShortener.IntegrationTests reference src/UrlShortener.Api
-dotnet add tests/UrlShortener.IntegrationTests reference src/UrlShortener.Infrastructure
+dotnet add tests/DevLinks.IntegrationTests reference src/DevLinks.Api
+dotnet add tests/DevLinks.IntegrationTests reference src/DevLinks.Infrastructure
 ```
 
 ### 2.5 Instalar os Pacotes NuGet Necessários
 
 ```bash
 # Na API:
-dotnet add src/UrlShortener.Api package Scalar.AspNetCore
-dotnet add src/UrlShortener.Api package Microsoft.AspNetCore.OpenApi
-dotnet add src/UrlShortener.Api package Microsoft.AspNetCore.Authentication.JwtBearer
-dotnet add src/UrlShortener.Api package AspNetCore.HealthChecks.NpgSql
-dotnet add src/UrlShortener.Api package Microsoft.EntityFrameworkCore.Design
+dotnet add src/DevLinks.Api package Scalar.AspNetCore
+dotnet add src/DevLinks.Api package Microsoft.AspNetCore.OpenApi
+dotnet add src/DevLinks.Api package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add src/DevLinks.Api package AspNetCore.HealthChecks.NpgSql
+dotnet add src/DevLinks.Api package Microsoft.EntityFrameworkCore.Design
 
 # Na Infraestrutura:
-dotnet add src/UrlShortener.Infrastructure package Npgsql.EntityFrameworkCore.PostgreSQL
-dotnet add src/UrlShortener.Infrastructure package Microsoft.AspNetCore.Identity.EntityFrameworkCore
-dotnet add src/UrlShortener.Infrastructure package Microsoft.EntityFrameworkCore.Design
-dotnet add src/UrlShortener.Infrastructure package System.IdentityModel.Tokens.Jwt
+dotnet add src/DevLinks.Infrastructure package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add src/DevLinks.Infrastructure package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add src/DevLinks.Infrastructure package Microsoft.EntityFrameworkCore.Design
+dotnet add src/DevLinks.Infrastructure package System.IdentityModel.Tokens.Jwt
 
 # Nos Testes Unitários:
-dotnet add tests/UrlShortener.UnitTests package FluentAssertions
-dotnet add tests/UrlShortener.UnitTests package NSubstitute
-dotnet add tests/UrlShortener.UnitTests package coverlet.collector
+dotnet add tests/DevLinks.UnitTests package FluentAssertions
+dotnet add tests/DevLinks.UnitTests package NSubstitute
+dotnet add tests/DevLinks.UnitTests package coverlet.collector
 
 # Nos Testes de Integração:
-dotnet add tests/UrlShortener.IntegrationTests package Microsoft.AspNetCore.Mvc.Testing
-dotnet add tests/UrlShortener.IntegrationTests package Testcontainers.PostgreSql
-dotnet add tests/UrlShortener.IntegrationTests package FluentAssertions
-dotnet add tests/UrlShortener.IntegrationTests package coverlet.collector
+dotnet add tests/DevLinks.IntegrationTests package Microsoft.AspNetCore.Mvc.Testing
+dotnet add tests/DevLinks.IntegrationTests package Testcontainers.PostgreSql
+dotnet add tests/DevLinks.IntegrationTests package FluentAssertions
+dotnet add tests/DevLinks.IntegrationTests package coverlet.collector
+```
+
+### 2.6 Verificar a Solution
+
+```bash
+dotnet build DevLinks.slnx
+dotnet sln list
+dotnet ef --version
 ```
 
 ---
@@ -175,7 +185,7 @@ dotnet add tests/UrlShortener.IntegrationTests package coverlet.collector
 
 ### Fase 7: Containerização e CI/CD
 
-- [ ] Criar `Dockerfile` multi-stage otimizado na pasta `src/UrlShortener.Api`.
+- [ ] Criar `Dockerfile` multi-stage otimizado na pasta `src/DevLinks.Api`.
 - [ ] Configurar `docker-compose.yml` integrando API + PostgreSQL com volume de uploads e Health Checks.
 - [ ] Testar execução completa do ambiente local via `docker compose up --build`.
 - [ ] Criar workflow do GitHub Actions em `.github/workflows/ci.yml` (restore, format check, build, testcontainers test).
