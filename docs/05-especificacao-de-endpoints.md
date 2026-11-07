@@ -22,7 +22,7 @@ Este documento define os contratos de interface REST, formatos de dados (DTOs), 
 ```csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace UrlShortener.Api.Common.DTOs;
+namespace DevLinks.Api.Common.DTOs;
 
 // --- DTOs de Autenticação ---
 public sealed record RegisterRequest(

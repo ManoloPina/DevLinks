@@ -398,6 +398,9 @@ FodyWeavers.xsd
 # Windows Installer files from build outputs
 *.cab
 *.msi
+
+# Anotações pessoais (não versionadas)
+anotacoes-pessoais/
 *.msix
 *.msm
 *.msp
