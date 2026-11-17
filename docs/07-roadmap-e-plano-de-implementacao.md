@@ -129,7 +129,7 @@ dotnet ef --version
   - [ ] `.github/ISSUE_TEMPLATE/bug_report.md`
   - [ ] `.github/ISSUE_TEMPLATE/feature_request.md`
   - [ ] `.github/dependabot.yml` para monitoramento de pacotes NuGet e Actions.
-- [ ] Fazer o commit inicial no Git (`chore: initial solution scaffold and governance`).
+- [x] Fazer o commit inicial no Git (`chore: initial solution scaffold and governance`).
 
 ### Fase 2: Autenticação com ASP.NET Core Identity e JWT
 

@@ -53,7 +53,7 @@ Confirme com `git branch --show-current`. A branch fica somente local; o push ac
     - Links para a issue (URL) e para o roadmap (`../docs/07-roadmap-e-plano-de-implementacao.md`, com a fase).
     - "Estado atual (conferido em AAAA-MM-DD)": bullets com evidências. Inclua branch criada, base, milestone, labels, PRs e quais caminhos das subtarefas já existem no repositório.
     - "Passo a passo": um passo por subtarefa, na ordem do roadmap, com comandos em Git Bash quando aplicável. Cite apenas caminhos reais. Para caminhos que ainda não existem, indique como criá-los, sem assumir o conteúdo.
-    - Passos finais: validar com `dotnet format --verify-no-changes`, `dotnet build` e `dotnet test`; commit `git commit -m "#<fase>.<item> - <título sem o prefixo>"`; `git push -u origin "feature/#<fase>.<item>"`; PR para `develop` com `Closes #<id>`; fechamento manual da issue após o merge; marcação do roadmap após o merge.
+    - Passos finais: validar com `dotnet format --verify-no-changes`, `dotnet build` e `dotnet test`; commit `git commit -m "#<fase>.<item> - <título sem o prefixo>"`; `git push -u origin "feature/#<fase>.<item>"`; PR para `develop` com `Closes #<id>`; fechamento manual da issue após o merge; o roadmap é marcado pelo git.finish antes do commit, na mesma PR.
     - "Checklist da issue": itens `- [ ]`, um por passo.
     - "Pendências fora desta issue": itens do roadmap que não entram nesta issue.
 11. Não faça stage nem commit do arquivo de anotação.
