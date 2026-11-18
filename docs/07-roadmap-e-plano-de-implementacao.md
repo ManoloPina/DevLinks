@@ -133,7 +133,7 @@ dotnet ef --version
 
 ### Fase 2: Autenticação com ASP.NET Core Identity e JWT
 
-- [ ] Subir container do PostgreSQL via Docker Compose.
+- [x] Subir container do PostgreSQL via Docker Compose.
 - [ ] Implementar entidade `AppUser` herdando de `IdentityUser<Guid>`.
 - [ ] Configurar `AppDbContext` herdando de `IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>`.
 - [ ] Implementar `JwtTokenGenerator` com emissão de token contendo claims (`sub`, `email`, `name`).
