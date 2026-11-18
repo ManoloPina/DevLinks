@@ -1,6 +1,6 @@
 # 07. Roadmap e Plano de Implementação
 
-Este documento estabelece o roteiro de execução prático e detalhado para construir o backend e a integração da aplicação **devlinks (Link-Sharing App)**, baseada no desafio de nível _Guru_ do [Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT), cobrindo desde a fundação técnica até a publicação no GitHub.
+Este documento estabelece o roteiro de execução prático e detalhado para construir a API REST da aplicação **devlinks (Link-Sharing App)**, baseada no desafio de nível _Guru_ do [Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT), cobrindo desde a fundação técnica até a publicação no GitHub. O frontend é desenvolvido separadamente e não pertence a este repositório.
 
 ---
 
@@ -134,7 +134,7 @@ dotnet ef --version
 ### Fase 2: Autenticação com ASP.NET Core Identity e JWT
 
 - [x] Subir container do PostgreSQL via Docker Compose.
-- [ ] Implementar entidade `AppUser` herdando de `IdentityUser<Guid>`.
+- [x] Implementar entidade `AppUser` herdando de `IdentityUser<Guid>`.
 - [ ] Configurar `AppDbContext` herdando de `IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>`.
 - [ ] Implementar `JwtTokenGenerator` com emissão de token contendo claims (`sub`, `email`, `name`).
 - [ ] Configurar autenticação JWT no pipeline (`builder.Services.AddAuthentication()`).
@@ -191,10 +191,7 @@ dotnet ef --version
 - [ ] Criar workflow do GitHub Actions em `.github/workflows/ci.yml` (restore, format check, build, testcontainers test).
 - [ ] Configurar documentação interativa com Scalar (`/scalar/v1`).
 
-### Fase 8: Integração com o Frontend do Frontend Mentor e Publicação
+### Fase 8: Documentação e Publicação
 
-- [ ] Conectar o frontend do desafio (React / Next.js) aos endpoints da API .NET.
-- [ ] Validar a sincronização em tempo real do _mockup_ de smartphone e reordenação _drag-and-drop_.
-- [ ] Validar o fluxo de cópia do link com toast na tela de Preview.
-- [ ] Atualizar o `README.md` principal na raiz com capturas de tela, diagrama de arquitetura, instruções de execução via Docker e documentação dos endpoints.
-- [ ] Publicar no GitHub e submeter a solução na plataforma [Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT).
+- [ ] Atualizar o `README.md` principal na raiz com diagrama de arquitetura, instruções de execução via Docker e documentação dos endpoints.
+- [ ] Publicar o repositório no GitHub.

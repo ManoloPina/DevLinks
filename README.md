@@ -1,8 +1,8 @@
-# devlinks (Link-Sharing App) — Full-Stack .NET 9 & React
+# devlinks (Link-Sharing App) — API REST .NET 9
 
-Aplicação moderna de compartilhamento e agregação de perfis sociais para desenvolvedores (**devlinks**), baseada no desafio de nível _Guru_ do [Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT).
+API REST para compartilhamento e agregação de perfis sociais de desenvolvedores (**devlinks**), baseada no desafio de nível _Guru_ do [Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT).
 
-O projeto conta com um backend robusto em **C#** e **.NET 9**, arquitetura limpa com Minimal APIs, autenticação **ASP.NET Core Identity & JWT**, persistência relacional em **PostgreSQL**, upload e validação de avatar, catálogo com validação estrita de URLs para 14 plataformas, testes automatizados reais com **Testcontainers** e containerização com **Docker Compose**.
+O projeto utiliza **C#** e **.NET 9**, arquitetura limpa com Minimal APIs, autenticação **ASP.NET Core Identity & JWT**, persistência relacional em **PostgreSQL**, upload e validação de avatar, catálogo com validação estrita de URLs para 14 plataformas, testes automatizados reais com **Testcontainers** e containerização com **Docker Compose**. O frontend é desenvolvido em um projeto separado e não faz parte desta codebase.
 
 ---
 

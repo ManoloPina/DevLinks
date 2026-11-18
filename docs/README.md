@@ -2,7 +2,7 @@
 
 Bem-vindo à documentação oficial de requisitos, arquitetura e engenharia do projeto **devlinks (Link-Sharing App)**, concebido com base no desafio avançado (_Guru_) do [Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT).
 
-Este projeto é desenvolvido como uma aplicação **Full-Stack de alto nível**, contendo um backend robusto em **C# / .NET 9 (Minimal APIs)**, persistência com **PostgreSQL** e **EF Core**, autenticação completa via **ASP.NET Core Identity & JWT**, upload e processamento de imagem de avatar, catálogo de validação de plataformas de desenvolvedores e suíte de testes com **Testcontainers**.
+Este projeto é uma **API REST** em **C# / .NET 9 (Minimal APIs)**, com persistência em **PostgreSQL** e **EF Core**, autenticação via **ASP.NET Core Identity & JWT**, upload e processamento de imagem de avatar, catálogo de validação de plataformas de desenvolvedores e suíte de testes com **Testcontainers**. O frontend é desenvolvido em um projeto separado e não faz parte desta codebase.
 
 ---
 
