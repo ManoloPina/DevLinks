@@ -12,7 +12,7 @@ Diferente de um encurtador de links simples, o **devlinks** funciona como uma pl
 - Visualizar um _mockup_ de smartphone atualizado em tempo real enquanto edita seus dados.
 - Gerar e compartilhar uma página pública de perfil única para divulgar em redes sociais e currículos.
 
-Para elevar o projeto ao patamar de solução _Full-Stack_ pronta para produção e portfólio de engenharia de software, o backend foi concebido em **C# / .NET 9**, implementando persistência relacional com **PostgreSQL**, autenticação completa com **ASP.NET Core Identity & JWT**, upload e validação de imagens, testes automatizados ponta a ponta e esteira de CI/CD via Docker e GitHub Actions.
+Para elevar a API ao patamar de solução pronta para produção e portfólio de engenharia de software, ela foi concebida em **C# / .NET 9**, com persistência relacional em **PostgreSQL**, autenticação via **ASP.NET Core Identity & JWT**, upload e validação de imagens, testes automatizados ponta a ponta e esteira de CI/CD via Docker e GitHub Actions. O frontend consome esses contratos a partir de um projeto separado.
 
 ---
 
@@ -37,20 +37,12 @@ Para elevar o projeto ao patamar de solução _Full-Stack_ pronta para produçã
 
 ---
 
-## 3. Escopo da Aplicação (Full-Stack & Backend)
+## 3. Escopo da Aplicação (Backend)
+
+O frontend é desenvolvido e testado em um projeto separado. Neste repositório, ele é tratado somente como um cliente HTTP externo.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ CAMADA VISUAL (Frontend: React / Next.js / TypeScript)                  │
-│ • Tabs: "Links" & "Profile Details"                                    │
-│ • Mockup de celular interativo em tempo real                           │
-│ • Drag-and-drop de links (= Link #1, #2...)                            │
-│ • Dropdown de plataformas com ícones e cores temáticas                 │
-│ • Upload interativo de avatar com pré-visualização instantânea         │
-│ • Tela de Preview público com botão "Copy Link" / Toast                │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │ HTTP REST / JSON / Multipart
-┌───────────────────────────────────▼────────────────────────────────────┐
 │ CAMADA DE BACKEND (ASP.NET Core Minimal APIs .NET 9)                   │
 │ • Autenticação & Gestão de Contas (Register, Login, Me)                │
 │ • CRUD e Reordenação em Lote de Links (/api/links)                     │
@@ -98,7 +90,8 @@ Para elevar o projeto ao patamar de solução _Full-Stack_ pronta para produçã
 
 ### 4.2 O que NÃO ESTÁ no Escopo Inicial (Out-of-Scope)
 
-- Redirecionamento por códigos hash curtos tipo Bitly (este projeto foca na agregação e exibição visual de links em página de perfil).
+- Implementação, testes visuais e publicação do frontend. Ele será desenvolvido em outro repositório e consumirá esta API por HTTP.
+- Redirecionamento por códigos hash curtos tipo Bitly (este projeto foca na disponibilização dos dados de perfil por uma API).
 - Integração com OAuth2 de terceiros (Google/GitHub Login) na primeira versão (pode ser adicionado como evolução futura).
 - Sistema de métricas avançadas em tempo real com mapa de calor de cliques geolocalizados.
 - Monetização ou planos pagos (_Devlinks Pro_).

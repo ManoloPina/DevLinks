@@ -2,13 +2,13 @@
 
 ## 1. Visão Geral da Arquitetura
 
-A arquitetura do **devlinks (Link-Sharing App)** foi desenhada para atender aos requisitos de uma aplicação Full-Stack com separação estrita de responsabilidades, alta coesão e facilidade de teste.
+A arquitetura do **devlinks (Link-Sharing App)** foi desenhada para uma API REST com separação estrita de responsabilidades, alta coesão e facilidade de teste. O frontend é um consumidor externo desenvolvido em outro projeto.
 
 A aplicação adota **ASP.NET Core Minimal APIs** no .NET 9, organizadas em camadas desacopladas (_Clean Architecture / Vertical Slice approach_), garantindo que a lógica de negócios e as regras de validação permaneçam isoladas da infraestrutura de dados e dos mecanismos de entrega HTTP.
 
 ```mermaid
 graph TD
-    Client([Frontend / Cliente HTTP]) -->|Auth / JWT| API[ASP.NET Core Minimal API]
+    Client([Cliente HTTP / frontend externo]) -->|Auth / JWT| API[ASP.NET Core Minimal API]
     Client -->|Links CRUD & Reorder| API
     Client -->|Profile & Avatar Upload| API
     Client -->|Public Profile Preview| API

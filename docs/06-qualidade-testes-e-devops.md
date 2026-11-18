@@ -6,14 +6,9 @@ Este documento define a estratégia de testes automatizados, as configurações 
 
 ## 1. Estratégia de Testes Automatizados
 
-A garantia de qualidade e conformidade com os requisitos do Frontend Mentor apoia-se em duas camadas estruturadas:
+A garantia de qualidade e conformidade com os requisitos da API apoia-se em duas camadas estruturadas. Os testes E2E visuais pertencem ao projeto separado do frontend.
 
 ```
-          ▲
-         / \
-        /   \
-       / E2E \          <-- Validação de fluxos visuais e drag-and-drop no Frontend
-      /───────\
      / Integração\      <-- WebApplicationFactory + Testcontainers.PostgreSql (Auth, Links, Profile)
     /─────────────\
    /   Unitários   \    <-- xUnit + FluentAssertions (Validadores de Plataformas, Reordenação, Entidades)
