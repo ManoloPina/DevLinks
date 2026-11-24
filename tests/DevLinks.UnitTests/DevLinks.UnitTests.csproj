@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\DevLinks.Core\DevLinks.Core.csproj" />
+    <ProjectReference Include="..\..\src\DevLinks.Infrastructure\DevLinks.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
