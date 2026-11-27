@@ -1,7 +1,7 @@
 ---
 name: "git.finish"
 description: "Finaliza uma issue do DevLinks: valida critérios e testes, atualiza roadmap e anotações, cria o commit na branch feature/#<fase>.<item>, faz push e abre o PR para develop. Use when: finalizar issue, fechar feature, concluir entrega, validar critérios de aceite, criar commit, abrir PR para develop."
-tools: [execute, read, edit, search, "github/*"]
+tools: [execute, read, edit, search, "github/*", "vscode/askQuestions"]
 argument-hint: "Número da issue, URL da issue ou URL/ID do card no GitHub Project"
 ---
 
@@ -26,6 +26,14 @@ Você finaliza issues do projeto DevLinks seguindo o fluxo gitflow do repositór
 - NÃO feche a issue. O fechamento é manual, depois do merge em `develop`.
 - NÃO marque item no roadmap ou na anotação sem evidência (arquivo, teste ou commit).
 - NÃO desmarque itens que já estão marcados.
+
+## Interação e retomada
+
+- Quando precisar de informação, escolha ou autorização do usuário, use `vscode/askQuestions`, quando disponível, com uma pergunta específica e opções adequadas ou campo de texto. Inclua a opção de suspender quando houver uma decisão sobre alterações ou bloqueios.
+- Aguarde a resposta da ferramenta e retome o fluxo no ponto apropriado, sem solicitar que o usuário envie outro prompt. Se a resposta for insuficiente, esclareça pela mesma ferramenta.
+- Quando uma chamada de ferramenta exigir aprovação ou estiver em andamento, aguarde seu resultado antes de avançar. Aprovação não significa que a operação foi concluída: confirme o resultado antes de prosseguir. Não presuma sucesso nem abra um PR duplicado se o resultado for desconhecido.
+- Em caso de falha de validação ou critério, apresente o erro e use a pergunta interativa para oferecer nova verificação após correção ou suspensão. Mantenha os bloqueios de commit, push e PR; não altere código de funcionalidade sem autorização explícita. Em falha de hook, pare e informe conforme as constraints.
+- Se a ferramenta de perguntas não estiver disponível ou a sessão não puder aguardar uma interação externa, informe a limitação e o ponto exato de retomada, sem presumir autorização ou conclusão.
 
 ## Approach
 

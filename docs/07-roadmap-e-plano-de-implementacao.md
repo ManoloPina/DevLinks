@@ -137,9 +137,11 @@ dotnet ef --version
 - [x] Implementar entidade `AppUser` herdando de `IdentityUser<Guid>`.
 - [x] Configurar `AppDbContext` herdando de `IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>`.
 - [x] Implementar `JwtTokenGenerator` com emissão de token contendo claims (`sub`, `email`, `name`).
-- [ ] Configurar autenticação JWT no pipeline (`builder.Services.AddAuthentication()`).
-  - [ ] Registrar `AppDbContext` no DI com `AddDbContext` e `UseNpgsql` (connection string `ConnectionStrings:Database`).
-  - [ ] Registrar o Identity com `AddIdentity<AppUser, IdentityRole<Guid>>()` e `AddEntityFrameworkStores<AppDbContext>()`.
+- [x] Configurar autenticação JWT no pipeline (`builder.Services.AddAuthentication()`).
+  - [x] Registrar `AppDbContext` no DI com `AddDbContext` e `UseNpgsql` (connection string `ConnectionStrings:Database`).
+  - [x] Registrar o Identity com `AddIdentity<AppUser, IdentityRole<Guid>>()` e `AddEntityFrameworkStores<AppDbContext>()`.
+  - [x] Configurar JWT Bearer compatível com os tokens emitidos e habilitar os middlewares de autenticação e autorização.
+  - [x] Verificar o acesso protegido com token válido e a rejeição de token inválido, expirado ou ausente.
 - [ ] Criar endpoints de autenticação em `AuthEndpoints`:
   - [ ] `POST /api/auth/register` (com criação automática de perfil em branco).
   - [ ] `POST /api/auth/login`.
